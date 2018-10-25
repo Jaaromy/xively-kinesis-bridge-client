@@ -9,9 +9,7 @@ function writeIntLE(data: number, offset: number, size: number): number {
   if (size === 2) {
     return this.writeInt16LE(data, offset);
   }
-  throw new Error(
-    "Size not supported in this polyfill. Buffer.writeIntLE:" + size
-  );
+  throw new Error('Size not supported in this polyfill. Buffer.writeIntLE:' + size);
 }
 
 function readIntLE(offset: number, size: number): number {
@@ -21,9 +19,7 @@ function readIntLE(offset: number, size: number): number {
   if (size === 2) {
     return this.readInt16LE(offset);
   }
-  throw new Error(
-    "Size not supported in this polyfill, Buffer.readIntLE:" + size
-  );
+  throw new Error('Size not supported in this polyfill, Buffer.readIntLE:' + size);
 }
 /* tslint:enable:no-invalid-this */
 
@@ -64,7 +60,7 @@ export class BufferReader {
         num = this.buffer.readUInt32LE(this.offset);
         break;
       default:
-        throw new Error(size + " is not supported as multibyte number");
+        throw new Error(size + ' is not supported as multibyte number');
     }
     this.offset += size;
     return num;
@@ -87,7 +83,7 @@ export class BufferReader {
    * @returns {*|string}
    */
   public readString(size: number): string {
-    return this.readBuffer(size).toString("utf8");
+    return this.readBuffer(size).toString('utf8');
   }
 }
 
@@ -123,7 +119,7 @@ export class BufferWriter {
         this.buffer.writeUInt32LE(data, this.offset);
         break;
       default:
-        throw new Error(size + " is not supported as multibyte number");
+        throw new Error(size + ' is not supported as multibyte number');
     }
     this.offset += size;
   }
@@ -134,11 +130,11 @@ export class BufferWriter {
    * @param size
    */
   public writeString(data: string, size: number) {
-    this.buffer.write(data, this.offset, size, "utf8");
+    this.buffer.write(data, this.offset, size, 'utf8');
     this.offset += size;
   }
 
-  public write(data: any[]) {
+  public write(data: number[]) {
     for (let i = 0; i < data.length; i++) {
       const element = data[i];
       this.writeIntLE(element, 2);
